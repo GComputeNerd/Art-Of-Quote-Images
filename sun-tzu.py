@@ -20,16 +20,17 @@ pc = PangoCairo.create_context(cr)
 layout = PangoCairo.create_layout(cr)
 
 # Sample Text
-text = "Let your plans be as dark and as impenetrable as night, and when you move, fall like a thunderbolt"
-text = "Hi"
-text = "That's Really Lame"
-text = "All War is Deception"
+# text = "Let your plans be as dark and as impenetrable as night, and when you move, fall like a thunderbolt"
+# text = "Hi"
+# text = "That's Really Lame"
+# text = "All War is Deception"
+
+text = input("Text = ")
 
 # Default Font Settings
 font = "monospace"
 style = "normal"
-fs = 80
-
+fs = 50
 
 # Set up layout
 layout.set_font_description(Pango.FontDescription(font + " " + style + " "  + str(fs)))
@@ -54,20 +55,22 @@ while (height > mh):
     layout.set_font_description(Pango.FontDescription(font + " " + style + " "  + str(fs)))
     height = layout.get_extents()[1].height/Pango.SCALE
 
+# Get Size of bounding rectangle
 width = layout.get_extents()[1].width/Pango.SCALE
 height = layout.get_extents()[1].height/Pango.SCALE
 
 x = (980-width)/2
 y = (387-height)/2
 
-cr.move_to((980-width)/2 , (387-height)/2)
+cr.move_to(x, y)
 
-PangoCairo.show_layout(cr, layout)
+PangoCairo.show_layout(cr, layout) # Display Main quote
 
 # Rectangles for Debugging Purposes
 # cf.Polygon(cr,260,40,720,40,720,347,260,347)
 # cf.Polygon(cr,x,y,x+width,y,x+width,y+height,x,y+height)
 
+# Sun Tzu, The Art of War text
 layout.set_font_description(Pango.FontDescription("monospace normal 18"))
 
 layout.set_text("~ Sun Tzu, The Art of War")
@@ -75,8 +78,7 @@ layout.set_alignment(0)
 
 w = layout.get_extents()[1].width/Pango.SCALE
 
-print(width,height)
-print(fs)
+
 if (width - w < 0):
     cr.move_to(720-w, (387+height)/2)
 else:
