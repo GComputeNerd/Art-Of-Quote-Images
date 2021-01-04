@@ -1,3 +1,4 @@
+import sys
 import cairo
 import cairofunctions as cf
 import gi
@@ -25,7 +26,7 @@ layout = PangoCairo.create_layout(cr)
 # text = "That's Really Lame"
 # text = "All War is Deception"
 
-text = input("Text = ")
+text = " ".join(sys.argv[1:])
 
 # Default Font Settings
 font = "monospace"
